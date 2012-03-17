@@ -1,18 +1,59 @@
 doctype html
-html
-head
-  title Design For Development
-  = stylesheet_link_tag    "application", :media => "all"
-  = javascript_include_tag "application"
-  = csrf_meta_tags
-body
-  p class="notice"= notice
-  p class="alert"= alert
-  ul id='header'
-    - if current_user
-      li= link_to "Sign out", destroy_user_session_path, method: "delete"
-    - else
-      li= link_to "Register", new_user_registration_path
-      li= link_to "Sign in", new_user_session_path
-  = yield
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    title= content_for?(:title) ? yield(:title) : "Design for Development"
+    = csrf_meta_tags
 
+    /! Le HTML5 shim, for IE6-8 support of HTML elements
+    /[if lt IE 9]
+      = javascript_include_tag "http://html5shim.googlecode.com/svn/trunk/html5.js"
+    /! Le styles
+    = stylesheet_link_tag    "application"
+    css:
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    / Le fav and touch icons
+    link href="images/favicon.ico" rel="shortcut icon"
+    link href="images/apple-touch-icon.png" rel="apple-touch-icon"
+    link href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72"
+    link href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114"
+
+
+  body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container-fluid
+          a.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse"
+            span.i-bar
+            span.i-bar
+            span.i-bar
+          a.brand href="#" Design for Development
+          .container-fluid.nav-collapse
+            ul.nav
+              - if current_user
+                li= link_to "Sign out", destroy_user_session_path, method: 'delete'
+              - else
+                li= link_to "Sign up", new_user_registration_path
+                li= link_to "Sign in", new_user_session_path
+
+    .container-fluid
+
+      .row-fluid
+        .span3
+          .well.sidebar-nav
+            ul.nav.nav-list
+              li.nav-header Navigation
+              li= link_to "Find someone", users_path
+        .span9
+          = yield
+    
+      footer
+        p &copy; Samantha John 2012
+    /!
+      Le javascript
+      \==================================================
+    /! Placed at the end of the document so the pages load faster
+    = javascript_include_tag "application"

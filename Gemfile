@@ -9,6 +9,7 @@ gem 'devise'
 gem 'pg'
 gem 'simple_form'
 gem 'slim-rails'
+gem "twitter-bootstrap-rails"
 gem 'will_paginate'
 
 
