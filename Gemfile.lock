@@ -57,6 +57,7 @@ GEM
       execjs
     coffee-script-source (1.2.0)
     columnize (0.3.6)
+    daemons (1.0.10)
     devise (2.0.4)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -75,6 +76,7 @@ GEM
     foreman (0.40.0)
       term-ansicolor (~> 1.0.7)
       thor (>= 0.13.6)
+    gem_plugin (0.2.3)
     highline (1.6.11)
     hike (1.2.1)
     i18n (0.6.0)
@@ -90,6 +92,9 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.17.2)
+    mongrel (1.2.0.pre2)
+      daemons (~> 1.0.10)
+      gem_plugin (~> 0.2.3)
     multi_json (1.1.0)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
@@ -202,6 +207,7 @@ DEPENDENCIES
   factory_girl_rails
   foreman
   jquery-rails
+  mongrel
   pg
   rails (= 3.2.2)
   rmagick
