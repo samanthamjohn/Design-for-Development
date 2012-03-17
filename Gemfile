@@ -32,6 +32,7 @@ group :development, :test do
   gem 'capybara'
   gem 'factory_girl_rails'
   gem 'foreman'
+  gem 'lorem_athlete'
   gem 'mongrel'
   gem 'rspec-rails'
 end
