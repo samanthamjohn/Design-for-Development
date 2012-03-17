@@ -1,0 +1,13 @@
+development:
+  adapter: postgresql
+  database: design_for_development_development
+  user: postgres
+  pool: 5
+  encoding: unicode
+
+test:
+  adapter: postgresql
+  database: design_for_development_test
+  user: postgres
+  pool: 5
+  encoding: unicode
