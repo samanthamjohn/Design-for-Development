@@ -32,7 +32,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'foreman'
   gem 'mongrel'
-  gem 'rspec'
+  gem 'rspec-rails'
 end
 
 group :development do
