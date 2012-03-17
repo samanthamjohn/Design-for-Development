@@ -27,7 +27,7 @@ describe UsersController do
         sign_in user
         put :update, id: user.to_param, user: {about: "foo", looking_for: "bar",
                                                city: "baz", talent_type: "other",
-                                               available: true}
+                                               available: true, name: "Sam"}
         user.reload.about.should == "foo"
         response.should redirect_to user_path(user)
      end

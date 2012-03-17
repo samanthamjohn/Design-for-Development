@@ -1,0 +1,16 @@
+h1= "#{@user.name}'s Profile"
+
+div class='user-description'
+  p= human_talent_type(@user.talent_type)
+  - if @user.company_name
+    p= "My company is #{@user.company_name}."
+  p
+    ="I live in #{@user.city}"
+    - if @user.state.present?
+      = ", #{@user.state}"
+    - else
+      | .
+  p= "#{@user.about}."
+  p= "I am looking for #{@user.looking_for}."
+
+

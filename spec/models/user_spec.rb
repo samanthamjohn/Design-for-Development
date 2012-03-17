@@ -9,6 +9,7 @@ describe User do
     it { should validate_presence_of :looking_for }
     it { should validate_presence_of :city }
     it { should validate_presence_of :talent_type }
+    it { should validate_presence_of :name }
   end
 
   context "available is not set" do
@@ -16,6 +17,7 @@ describe User do
     it { should_not validate_presence_of :looking_for }
     it { should_not validate_presence_of :city }
     it { should_not validate_presence_of :talent_type }
+    it { should_not validate_presence_of :name }
   end
 
 

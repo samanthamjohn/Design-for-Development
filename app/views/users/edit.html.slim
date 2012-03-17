@@ -1,5 +1,6 @@
 = simple_form_for @user, html: {class: 'form-vertical'} do |f|
   h2 Tell us about yourself
+  = f.input :name, label: "What's your name?", placeholder: "Name"
   div class='talent-type'
     = f.collection_radio_buttons :talent_type, [["I am a designer", 'Designer'] ,["I am a developer", 'Developer'], ["I do both", "both"], ["I do something else", "other"]], :last, :first
   = f.input :about, label: "Why would I want to swap with you?", placeholder: "Describe your background and experience:", input_html: {rows: 5, cols: 60}
