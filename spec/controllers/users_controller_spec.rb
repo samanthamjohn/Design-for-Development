@@ -13,8 +13,40 @@ describe UsersController do
   describe "edit" do
     it "should render the edit page" do
       user = create(:user)
+      sign_in user
       get :edit, id: user.to_param
       assigns(:user).should == user
+      assigns(:user).available.should be
+    end
+  end
+
+  describe "update" do
+    context "valid params" do
+     it "renders the show page" do
+        user = create(:user)
+        sign_in user
+        put :update, id: user.to_param, user: {about: "foo", looking_for: "bar",
+                                               city: "baz", talent_type: "other",
+                                               available: true}
+        user.reload.about.should == "foo"
+        response.should redirect_to user_path(user)
+     end
+    end
+    context "invalid params" do
+      it "renders the edit page with errors" do
+        user = create(:user)
+        sign_in user
+        put :update, id: user.to_param, user: {available: true}
+        response.should render_template(:edit)
+      end
+    end
+  end
+
+  describe "show" do
+    it "should assign the user" do
+      user = create(:user)
+      get :show, id: user.to_param
+      response.should be_success
     end
   end
 end

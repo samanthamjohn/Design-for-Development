@@ -34,6 +34,7 @@ GEM
       capistrano (>= 2.5.3)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
+    cancan (1.6.7)
     capistrano (2.11.2)
       highline
       net-scp (>= 1.0.0)
@@ -47,6 +48,7 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
+    carmen (0.2.9)
     childprocess (0.3.1)
       ffi (~> 1.0.6)
     coffee-rails (3.2.2)
@@ -222,7 +224,9 @@ PLATFORMS
 
 DEPENDENCIES
   auto_tagger
+  cancan
   capybara
+  carmen
   coffee-rails (~> 3.2.1)
   devise
   factory_girl_rails

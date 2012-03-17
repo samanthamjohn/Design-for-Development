@@ -34,7 +34,7 @@ html lang="en"
           .container-fluid.nav-collapse
             ul.nav
               - if current_user
-                li= link_to "Edit My Profile", edit_profile_path
+                li= link_to "Edit My Profile", edit_user_path(current_user)
                 li= link_to "View Profile"
                 li= link_to "Sign out", destroy_user_session_path, method: 'delete'
               - else
@@ -50,7 +50,7 @@ html lang="en"
               li.nav-header Navigation
               li= link_to "Browse All Users", users_path
               li= link_to "Designers", users_path(type: 'designer')
-              li= link_to "Developers", users_path(type: 'developer'
+              li= link_to "Developers", users_path(type: 'developer')
         .span9
           = yield
     
