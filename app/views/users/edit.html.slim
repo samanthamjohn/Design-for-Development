@@ -1,13 +1,14 @@
 = simple_form_for @user, html: {class: 'form-vertical'} do |f|
   h2 Tell us about yourself
-  = f.input :name, label: "What's your name?", placeholder: "Name"
   div class='talent-type'
     = f.collection_radio_buttons :talent_type, [["I am a designer", 'Designer'] ,["I am a developer", 'Developer'], ["I do both", "both"], ["I do something else", "other"]], :last, :first
-  = f.input :about, label: "Why would I want to swap with you?", placeholder: "Describe your background and experience:", input_html: {rows: 5, cols: 60}
-  = f.input :looking_for, label: "What are you looking for?", input_html: {rows: 5, cols: 60}, placeholder: "Describe the work you need done"
-  = f.input :company_name, label: "Where do you work?", placeholder: "Company Name"
-  = f.input :city, label: "Where do you live?", placeholder: "City"
-  = f.collection_select :state,  [["State", ""]] + Carmen::states('US'), :last, :first, selected: "State"
-  = f.input :available, as: :hidden
+  = f.input :name, label: "My name is...", placeholder: "Name"
+  = f.input :about, label: "My background is...", placeholder: "Describe your background and experience:", input_html: {rows: 5, cols: 60}
+  = f.input :looking_for, label: "I am looking for...", input_html: {rows: 5, cols: 60}, placeholder: "Describe the work you need done"
+  = f.input :company_name, label: "My company is...", placeholder: "Company Name"
+  div class='location
+    = f.input :city, label: "I live in...", placeholder: "City"
+    div class='states'= f.collection_select :state,  [["", "State"]] + Carmen::states('US'), :first, :last, selected: "State"
+    = f.input :available, as: :hidden
   div class='submit'
   = f.submit "Submit"
