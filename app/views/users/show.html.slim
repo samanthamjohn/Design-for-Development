@@ -21,5 +21,9 @@ div class='user-description'
       - @user.links.each do |link|
           li= link_to link.name, link.url
   p= "I am looking for #{@user.looking_for}."
-  - if current_user && @user != current_user && @user.available?
+  - if current_user && @user != current_user && @user.available? && current_user.available?
     = link_to "Swap with #{@user.name}!", "mailto:#{@user.email}", class: 'btn btn-primary', target: "_blank"
+  - elsif !current_user
+    p.no-contact You need to sign up and fill out your profile in order to contact this user
+  - elsif !current_user.available?
+    p.no-contact You need to fill out your profile in order to contact this user
