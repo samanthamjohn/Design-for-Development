@@ -4,6 +4,16 @@
     = f.collection_radio_buttons :talent_type, [["I am a designer", 'Designer'] ,["I am a developer", 'Developer'], ["I do both", "both"], ["I do something else", "other"]], :last, :first
   = f.input :name, label: "My name is...", placeholder: "Name"
   = f.input :about, label: "My background is...", placeholder: "Describe your background and experience:", input_html: {rows: 5, cols: 60}
+  div class='skills'
+    label My skills are..
+    div class='design'
+      label Design:
+      = f.collection_check_boxes :design_skills, Skill::DESIGN_SKILLS.map{|a| [a,a]}, :first, :last
+    div class='development'
+      Label Development:
+      = f.collection_check_boxes :development_skills, Skill::DEVELOPMENT_SKILLS.map{|a| [a,a]}, :first, :last
+    div class='other'
+      = f.input :other_skills, label: "Other:"
   = f.input :looking_for, label: "I am looking for...", input_html: {rows: 5, cols: 60}, placeholder: "Describe the work you need done"
   = f.input :company_name, label: "My company is...", placeholder: "Company Name"
   div class='location

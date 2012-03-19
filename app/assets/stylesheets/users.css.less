@@ -6,8 +6,16 @@ form {
     width: auto;
   }
 }
-.talent-type, .listings {
+.talent-type, .skills {
   overflow: hidden;
+  .design, .development, .other {
+    margin: 10px 0;
+    overflow: hidden;
+    clear: both;
+  }
+  .other label {
+    line-height: 25px;
+  }
   input {
     float: right;
   }
@@ -36,5 +44,11 @@ form {
       margin-left: 13px;
       width: 75px;
     }
+  }
+}
+
+.user-description {
+  p {
+    background: $gray;
   }
 }

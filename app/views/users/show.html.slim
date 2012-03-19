@@ -10,7 +10,6 @@ div class='user-description'
       = ", #{@user.state}"
     - else
       | .
-  p= "#{@user.about}."
+  p= "My background is #{@user.about}."
+  p= "My skills are: #{@user.skills.map(&:name).join(" ")}"
   p= "I am looking for #{@user.looking_for}."
-
-

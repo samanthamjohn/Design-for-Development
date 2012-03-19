@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe User do
   it { create(:user); should validate_uniqueness_of :email }
+  it { should have_many :skills }
+  it "should have a factory" do
+    build(:user).should be_valid
+  end
 
   context "available" do
     subject { build(:user, available: true) }
@@ -20,5 +24,17 @@ describe User do
     it { should_not validate_presence_of :name }
   end
 
+  describe "#before_save" do
+    it "should save the user's skills" do
+      user = build(:user, design_skills: ['ui', 'ux'], development_skills: ['ruby', 'python'], other_skills: "hello")
+      user.save!
+      user.skills.map(&:name).should =~ ['ui', 'ux', 'ruby', 'python', 'hello']
+    end
+  end
+
+  it "should accept nested attributes for skills" do
+    user = build(:user, skills_attributes: [{skill_type: "design", name: "ui"}])
+    user.skills.first.name.should == 'ui'
+  end
 
 end
