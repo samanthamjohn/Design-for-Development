@@ -4,6 +4,7 @@ DesignForDevelopment::Application.routes.draw do
 
 
   resources :users
+  resources :links, only: :destroy
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

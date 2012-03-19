@@ -1,9 +1,13 @@
 = simple_form_for @user, html: {class: 'form-vertical'} do |f|
   h2 Tell us about yourself
+  hr
   div class='talent-type'
     = f.collection_radio_buttons :talent_type, [["I am a designer", 'Designer'] ,["I am a developer", 'Developer'], ["I do both", "both"], ["I do something else", "other"]], :last, :first
+  hr
   = f.input :name, label: "My name is...", placeholder: "Name"
+  hr
   = f.input :about, label: "My background is...", placeholder: "Describe your background and experience:", input_html: {rows: 5, cols: 60}
+  hr
   div class='skills'
     label My skills are..
     div class='design'
@@ -14,11 +18,27 @@
       = f.collection_check_boxes :development_skills, Skill::DEVELOPMENT_SKILLS.map{|a| [a,a]}, :first, :last
     div class='other'
       = f.input :other_skills, label: "Other:"
+    script type='template' id='link_form'
+      = render 'link_form.mustache'
+  hr
+  div class='links'
+    label Here are some links to my work... 
+    ul class='links'
+      - @user.links.where("id is not null").each do |link|
+        li
+          span= link.name
+          span= link_to link.url, link.url
+          span = link_to "Remove", link_path(link), method: "delete"
+    = link_to "Add a link", "#", id: "new_link_0", class: "new-link"
+
+  hr
   = f.input :looking_for, label: "I am looking for...", input_html: {rows: 5, cols: 60}, placeholder: "Describe the work you need done"
+  hr
   = f.input :company_name, label: "My company is...", placeholder: "Company Name"
+  hr
   div class='location
     = f.input :city, label: "I live in...", placeholder: "City"
     div class='states'= f.collection_select :state,  [["", "State"]] + Carmen::states('US'), :first, :last, selected: "State"
     = f.input :available, as: :hidden
   div class='submit'
-  = f.submit "Submit"
+    = f.submit "Submit"

@@ -1,6 +1,5 @@
-h1= "#{@user.name}'s Profile"
-
 div class='user-description'
+  h1= "#{@user.name}'s Profile"
   p= human_talent_type(@user.talent_type)
   - if @user.company_name
     p= "My company is #{@user.company_name}."
@@ -11,5 +10,14 @@ div class='user-description'
     - else
       | .
   p= "My background is #{@user.about}."
-  p= "My skills are: #{@user.skills.map(&:name).join(" ")}"
+  p class='skills'
+    = "My skills are: "
+    ul
+      - @user.skills.each do |skill|
+        li= skill.name
+  p class='links'
+    = "Here are some links to my work: "
+    ul
+      - @user.links.each do |link|
+          li= link_to link.name, link.url
   p= "I am looking for #{@user.looking_for}."

@@ -3,6 +3,7 @@ require 'spec_helper'
 describe User do
   it { create(:user); should validate_uniqueness_of :email }
   it { should have_many :skills }
+  it { should have_many :links }
   it "should have a factory" do
     build(:user).should be_valid
   end
@@ -44,6 +45,11 @@ describe User do
   it "should accept nested attributes for skills" do
     user = build(:user, skills_attributes: [{skill_type: "design", name: "ui"}])
     user.skills.first.name.should == 'ui'
+  end
+
+  it "should accept nested attributes for links" do
+    user = build(:user, links_attributes: [{name: "Dribbble", url: "http://dribble.com"}, {name: "Twitter", url: "twitter.com"}])
+    user.links.map(&:name).should =~ ["Dribbble", "Twitter"]
   end
 
 end

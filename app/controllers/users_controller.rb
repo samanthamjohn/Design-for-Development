@@ -5,12 +5,15 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
     @user.available = true
   end
 
   def update
-    @user = User.find(params[:id])
+    links = params[:user]["links_attributes"]
+    unless links.blank?
+      links = links.reject{|link| link["name"].blank? || link["url"].blank? }
+      params[:user]["links_attributes"] = links
+    end
     if @user.update_attributes(params[:user])
       redirect_to user_path(@user)
     else
@@ -19,6 +22,5 @@ class UsersController < ApplicationController
   end
 
   def show
-
   end
 end
