@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120319015256) do
+ActiveRecord::Schema.define(:version => 20120319042429) do
 
   create_table "links", :force => true do |t|
     t.string   "url"
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(:version => 20120319015256) do
     t.string   "talent_type"
     t.boolean  "available"
     t.string   "name"
+    t.string   "company_url"
+    t.string   "company_description"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

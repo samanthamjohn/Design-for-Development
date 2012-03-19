@@ -3,6 +3,10 @@ div class='user-description'
   p= human_talent_type(@user.talent_type)
   - if @user.company_name
     p= "My company is #{@user.company_name}."
+  - if @user.company_description
+    p= "My company does #{@user.company_description}"
+  - if @user.company_url
+    p= "Find us on the web at #{@user.company_url}"
   p
     ="I live in #{@user.city}"
     - if @user.state.present?

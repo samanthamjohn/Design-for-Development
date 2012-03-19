@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
     :remember_me, :available, :about, :looking_for, :city,
     :state, :company_name, :talent_type, :name,
     :design_skills, :development_skills, :other_skills,
-    :links_attributes
+    :links_attributes, :company_url, :company_description
 
   attr_accessor :design_skills, :development_skills, :other_skills
 
