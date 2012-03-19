@@ -11,7 +11,9 @@ class UsersController < ApplicationController
   def update
     links = params[:user]["links_attributes"]
     unless links.blank?
-      links = links.reject{|link| link["name"].blank? || link["url"].blank? }
+      links = links.reject do |key, link|
+        link["name"].blank? || link["url"].blank?
+      end
       params[:user]["links_attributes"] = links
     end
     if @user.update_attributes(params[:user])

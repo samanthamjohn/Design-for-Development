@@ -41,6 +41,16 @@ describe UsersController do
        user.reload.links.should be_empty
        response.should redirect_to user_path(user)
      end
+
+     it "accepts non blank links" do
+       user = create(:user)
+       sign_in user
+       put :update, id: user.to_param, user: {
+         "links_attributes"=>{"0"=>{"name"=>"Foo", "url"=>"https://github.com/samjohn"}}
+       }
+       user.reload.links.length.should == 1
+       response.should redirect_to user_path(user)
+     end
     end
     context "invalid params" do
       it "renders the edit page with errors" do
