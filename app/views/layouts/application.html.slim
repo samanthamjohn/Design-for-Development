@@ -45,18 +45,22 @@ html lang="en"
 
       .row-fluid
         .span3
-          .well.sidebar-nav
-            ul.nav.nav-list
-              li.nav-header Browse
-              li= link_to "All Users", users_path
-              li= link_to "Designers", user_types_path(type: 'designer')
-              li= link_to "Developers", user_types_path(type: 'developer')
-              li= link_to "Other", user_types_path(type: 'developer')
+          - if current_user && current_user.available?
+            .well.sidebar-nav
+              ul.nav.nav-list
+                li.nav-header Browse
+                li= link_to "All Users", users_path
+                li= link_to "Designers", user_types_path(type: 'designer')
+                li= link_to "Developers", user_types_path(type: 'developer')
+                li= link_to "Other", user_types_path(type: 'developer')
         .span9
           = yield
     
       footer
-        p &copy; Samantha John 2012
+        p
+          |&copy; 
+          = link_to "Samantha John", "mailto:sam@gethopscotch.com", target: "_blank"
+          |  2012
     /!
       Le javascript
       \==================================================
