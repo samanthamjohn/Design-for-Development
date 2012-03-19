@@ -21,3 +21,5 @@ div class='user-description'
       - @user.links.each do |link|
           li= link_to link.name, link.url
   p= "I am looking for #{@user.looking_for}."
+  - if current_user && @user != current_user && @user.available?
+    = link_to "Swap with #{@user.name}!", "mailto:#{@user.email}", class: 'btn btn-primary', target: "_blank"
