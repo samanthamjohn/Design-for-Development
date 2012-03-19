@@ -1,7 +1,15 @@
 class UsersController < ApplicationController
   load_and_authorize_resource
   def index
-    @users = User.all
+    if params[:type] == "developer"
+      @users = User.developers
+    elsif params[:type] == "designer"
+      @users = User.designers
+    elsif params[:type] == "other"
+      @users = User.where(available: true).where(talent_type: "other")
+    else
+      @users = User.where(available: true)
+    end
   end
 
   def edit

@@ -47,10 +47,11 @@ html lang="en"
         .span3
           .well.sidebar-nav
             ul.nav.nav-list
-              li.nav-header Navigation
-              li= link_to "Browse All Users", users_path
-              li= link_to "Designers", users_path(type: 'designer')
-              li= link_to "Developers", users_path(type: 'developer')
+              li.nav-header Browse
+              li= link_to "All Users", users_path
+              li= link_to "Designers", user_types_path(type: 'designer')
+              li= link_to "Developers", user_types_path(type: 'developer')
+              li= link_to "Other", user_types_path(type: 'developer')
         .span9
           = yield
     

@@ -3,6 +3,7 @@ DesignForDevelopment::Application.routes.draw do
 
 
 
+  match "/users/type/:type" => "users#index", as: "user_types"
   resources :users
   resources :links, only: :destroy
 

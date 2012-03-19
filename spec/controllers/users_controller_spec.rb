@@ -4,9 +4,25 @@ describe UsersController do
 
   describe "index" do
     it "should show all the users" do
-      user = create(:user)
+      user = create(:available_user)
+      unavailable_user = create(:user)
       get :index
-      assigns(:users).should include(user)
+      assigns(:users).should == [user]
+    end
+
+    context "a type param is passed in" do
+      it "should show all developers" do
+        developer = create(:available_user, talent_type: "developer")
+        other = create(:available_user, talent_type: "other")
+        designer = create(:available_user, talent_type: "designer")
+        both = create(:available_user, talent_type: "both")
+        get :index, type: "designer"
+        assigns(:users).should =~ [designer, both]
+        get :index, type: "developer"
+        assigns(:users).should =~ [developer, both]
+        get :index, type: "other"
+        assigns(:users).should =~ [other]
+      end
     end
   end
 

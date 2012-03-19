@@ -6,6 +6,27 @@ describe User do
   it { should have_many :links }
   it "should have a factory" do
     build(:user).should be_valid
+    build(:available_user).should be_valid
+  end
+
+  describe "scopes" do
+    describe ".designers" do
+      it "should return the designers and both" do
+        developer = create(:available_user, talent_type: "developer")
+        designer = create(:available_user, talent_type: "designer")
+        both = create(:available_user, talent_type: "both")
+        User.designers.should =~ [both, designer]
+      end
+    end
+
+    describe ".developers" do
+      it "should return the designers and both" do
+        developer = create(:available_user, talent_type: "developer")
+        designer = create(:available_user, talent_type: "designer")
+        both = create(:available_user, talent_type: "both")
+        User.developers.should =~ [both, developer]
+      end
+    end
   end
 
   context "available" do

@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
 
   attr_accessor :design_skills, :development_skills, :other_skills
 
+  scope :developers, where("available = true AND (talent_type='developer' OR talent_type='both')")
+  scope :designers, where("available = true AND (talent_type='designer' OR talent_type='both')")
+
   after_initialize :initialize_skills
   before_save :add_skills
 
