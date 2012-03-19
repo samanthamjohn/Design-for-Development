@@ -24,6 +24,15 @@ describe User do
     it { should_not validate_presence_of :name }
   end
 
+  describe "after_initialize" do
+    it "should set the skills" do
+      create(:user, design_skills: ['ui'], development_skills: ['ruby'])
+      user = User.first
+      user.design_skills.should == ['ui']
+      user.development_skills.should == ['ruby']
+    end
+  end
+
   describe "#before_save" do
     it "should save the user's skills" do
       user = build(:user, design_skills: ['ui', 'ux'], development_skills: ['ruby', 'python'], other_skills: "hello")

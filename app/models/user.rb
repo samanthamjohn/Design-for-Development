@@ -8,13 +8,16 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation,
     :remember_me, :available, :about, :looking_for, :city,
     :state, :company_name, :talent_type, :name,
-    :design_skills, :development_skills, :other_skills
+    :design_skills, :development_skills, :other_skills,
+    :links_attributes
 
   attr_accessor :design_skills, :development_skills, :other_skills
 
+  after_initialize :initialize_skills
   before_save :add_skills
 
   has_many :skills
+  has_many :links
 
   validates_presence_of :about, if: :available
   validates_presence_of :looking_for, if: :available
@@ -23,6 +26,7 @@ class User < ActiveRecord::Base
   validates_presence_of :name, if: :available
 
   accepts_nested_attributes_for :skills
+  accepts_nested_attributes_for :links
 
   private
 
@@ -43,6 +47,18 @@ class User < ActiveRecord::Base
 
     skills << Skill.new(skill_type: "other", name: other_skills) if other_skills.present?
     self.skills = skills
+  end
+
+  def initialize_skills
+    self.design_skills = []
+    self.development_skills = []
+    self.skills.each do |skill|
+      if skill.skill_type == "design"
+        self.design_skills << skill.name
+      elsif skill.skill_type == "development"
+        self.development_skills << skill.name
+      end
+    end
   end
 
 end
