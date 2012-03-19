@@ -35,7 +35,7 @@ html lang="en"
             ul.nav
               - if current_user
                 li= link_to "Edit My Profile", edit_user_path(current_user)
-                li= link_to "View Profile", current_user
+                li= link_to "View My Profile", current_user
                 li= link_to "Sign out", destroy_user_session_path, method: 'delete'
               - else
                 li= link_to "Sign up", new_user_registration_path
