@@ -2,6 +2,15 @@ h1 Welcome to Development for Design
 
 h2 This is a marketplace for bootstrapping startups. Without money it's hard to hire out the skills you don't have but here you can barter your skills to get professional work done in the fields you are lacking.
 
+div id='twitter'
+  a href="https://twitter.com/share" class="twitter-share-button" data-text="I just signed up at Development for Design to barter my skills with other startups!" data-size="large" data-count="none"
+    | Tweet
+javascript:
+  !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+
+div id='facebook'
+  iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.developmentfordesign.com%2F&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21&amp;appId=228411217257051" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowTransparency="true"
+
 - unless current_user
   h2 
     = link_to "Sign up", new_user_registration_path
